@@ -15,6 +15,7 @@ _start:
   mov rdi, [rsp+16] ; argv[1]
   call find_len
 
+; print str
   mov rsi, rdi
   mov rdx, rax ; str len
   mov rdi, 1
@@ -32,6 +33,6 @@ argc_err:
   mov rax, 1
   syscall
 
-  mov rdi, 0
+  mov rdi, 1
   mov rax, 60
   syscall
