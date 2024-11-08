@@ -22,7 +22,30 @@
         nixpkgs.lib.genAttrs supportedSystems (
           system:
           f {
-            pkgs = import nixpkgs { inherit system; };
+            pkgs = import nixpkgs {
+              inherit system;
+              overlays = [
+                (final: prev: {
+                  asm-lsp = prev.asm-lsp.overrideAttrs (oldAttrs: rec {
+                    version = "master";
+
+                    src = prev.fetchFromGitHub {
+                      owner = "bergercookie";
+                      repo = "asm-lsp";
+                      rev = "master";
+                      hash = "sha256-08BNqQX60StKtC2rF5tlnhiBR6niE6t4Mk3H7dUFFDg=";
+                    };
+
+                    cargoDeps = oldAttrs.cargoDeps.overrideAttrs (
+                      prev.lib.const {
+                        inherit src;
+                        outputHash = "sha256-SxXxA8I27xG+7cDhU3KpXbsLvv6ls+YsFuq4mg3J46A=";
+                      }
+                    );
+                  });
+                })
+              ];
+            };
           }
         );
     in
