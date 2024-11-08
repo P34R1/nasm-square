@@ -53,13 +53,14 @@
       devShells = forEachSupportedSystem (
         { pkgs }:
         {
-          default = pkgs.mkShell {
+          default = pkgs.mkShell.override { stdenv = pkgs.clangStdenv; } {
             # The Nix packages provided in the environment
             # Add any you need here
             packages = with pkgs; [
               nasm
               nasmfmt
               asm-lsp
+              clang-tools
 
               ed # The standard
             ];

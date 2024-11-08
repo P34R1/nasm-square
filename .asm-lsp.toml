@@ -1,30 +1,10 @@
 [default_config]
+version = "0.9.0"
 assembler = "nasm"
-instruction_set = "x86-64"
+instruction_set = "x86/x86-64"
 
-# [opts]
-# compiler = "zig" # need "cc" as the first argument in `compile_flags.txt`
-# diagnostics = true
-# default_diagnostics = true
-
-# Configure the server's treatment of source files in the `arm-project` sub-directory
-# [[project]]
-# path = "arm-project"
-# assembler = "gas"
-# instruction_set = "arm"
-
-# [project.opts]
-# compiler = "zig"
-# compile_flags_txt = [
-#   "cc",
-#   "-x",
-#   "assembler-with-cpp",
-#   "-g",
-#   "-Wall",
-#   "-Wextra",
-#   "-pedantic",
-#   "-pedantic-errors",
-#   "-std=c2y",
-#   "-target",
-#   "aarch64-linux-musl",
-# ]
+[default_config.opts]
+compiler = "clangd"
+compile_flags_txt = []
+diagnostics = true
+default_diagnostics = false
