@@ -61,6 +61,7 @@
               nasmfmt
               asm-lsp
               clang-tools
+              gdb
 
               ed # The standard
             ];
