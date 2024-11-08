@@ -1,5 +1,6 @@
   section .rodata
-  argc_err_msg db "No Argument was Given!", 0xa
+argc_err_msg:
+  db "No Argument was Given!", 0xa
   argc_err_len equ $ - argc_err_msg
 
   section .text
@@ -8,16 +9,17 @@
   extern find_len
 
 _start:
-  mov ecx, [rsp] ; load argc (assuming smaller then 2^32)
+; err check instead of segfault
+  mov ecx, [rsp]                       ; load argc (assuming smaller then 2^32)
   cmp ecx, 1
-  jbe argc_err ; jmp to argc_err if argc <= 1 (no arguments were given)
+  jbe argc_err                         ; jmp to argc_err if argc <= 1 (no arguments were given)
 
-  mov rdi, [rsp+16] ; argv[1]
+  mov rdi, [rsp+16]                    ; argv[1]
   call find_len
 
 ; print str
   mov rsi, rdi
-  mov rdx, rax ; str len
+  mov rdx, rax                         ; str len from find_len
   mov rdi, 1
   mov rax, 1
   syscall

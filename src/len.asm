@@ -8,12 +8,12 @@
 ; rax: int (length of the string)
 
 find_len:
-  xor rcx, rcx ; rcx = 0
+  xor rcx, rcx                         ; rcx = 0
 
 loop:
-  cmp byte [rdi + rcx], 0 ; check for \0
+  cmp byte [rdi + rcx], 0              ; check for \0
   je return
-  inc rcx ; rcx++
+  inc rcx                              ; rcx++
   jmp loop
 
 return:
