@@ -7,13 +7,14 @@ argc_err_msg:
   global _start
 
   extern find_len
+  extern atoi
   extern exit
 
 _start:
 ; err check instead of segfault
   mov ecx, [rsp]                       ; load argc (assuming smaller then 2^32)
   cmp ecx, 1
-  jbe argc_err                         ; jmp to argc_err if argc <= 1 (no arguments were given)
+  jbe argc_err                         ; jmp to argc_err if argc <= 1 (no args)
 
   mov rdi, [rsp+16]                    ; argv[1]
   call find_len
@@ -24,6 +25,11 @@ _start:
   mov rdi, 1
   mov rax, 1
   syscall
+
+  mov rdi, [rsp+16]                    ; argv[1]
+  call atoi
+  mov rdi, rax
+  call exit
 
   mov rdi, 0
   call exit
