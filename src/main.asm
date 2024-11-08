@@ -7,6 +7,7 @@ argc_err_msg:
   global _start
 
   extern find_len
+  extern exit
 
 _start:
 ; err check instead of segfault
@@ -25,8 +26,7 @@ _start:
   syscall
 
   mov rdi, 0
-  mov rax, 60
-  syscall
+  call exit
 
 argc_err:
   mov rsi, argc_err_msg
@@ -36,5 +36,4 @@ argc_err:
   syscall
 
   mov rdi, 1
-  mov rax, 60
-  syscall
+  call exit
