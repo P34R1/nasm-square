@@ -13,9 +13,9 @@ argc_err_msg:
 
 _start:
 ; err check instead of segfault
-  ;mov ecx, [rsp]                       ; load argc (assuming smaller then 2^32)
-  ;cmp ecx, 1
-  ;jbe argc_err                         ; jmp to argc_err if argc <= 1 (no args)
+  mov ecx, [rsp]                       ; load argc (assuming smaller then 2^32)
+  cmp ecx, 1
+  jbe argc_err                         ; jmp to argc_err if argc <= 1 (no args)
 
   ;mov rdi, [rsp+16]                    ; argv[1]
   ;call find_len
@@ -27,15 +27,12 @@ _start:
 ; mov rax, 1
 ; syscall
 
-  ;mov rdi, [rsp+16]                    ; argv[1]
-  ;call atoi
-  ;mul rax                              ; square rax
+  mov rdi, [rsp+16]                    ; argv[1]
+  call atoi
+  mul rax                              ; square rax
 
-  mov rsi, 789
+  mov rsi, rax
   call itoa                            ; Call the itoa function
-
-  ;mov rdi, rax
-  ;call find_len
 
   mov rsi, rax ; make rsi the beginning of the string
   mov rdx, rdx ; make rdx the string size
@@ -46,12 +43,12 @@ _start:
   mov rdi, 0
   call exit
 
-;argc_err:
-;  mov rsi, argc_err_msg
-;  mov rdx, argc_err_len
-;  mov rdi, 1
-;  mov rax, 1
-;  syscall
-;
-;  mov rdi, 1
-;  call exit
+argc_err:
+  mov rsi, argc_err_msg
+  mov rdx, argc_err_len
+  mov rdi, 1
+  mov rax, 1
+  syscall
+
+  mov rdi, 1
+  call exit
