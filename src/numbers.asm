@@ -1,3 +1,11 @@
+; HELPFUL LINKS
+; https://www.cs.umd.edu/~srhuang/teaching/cmsc212/gdb-tutorial-handout.pdf GDB
+; https://bytetool.web.app/en/ascii/code/0x32/ for debugging ascii
+; https://cs.brown.edu/courses/cs033/docs/guides/x64_cheatsheet.pdf
+; https://www.cs.uaf.edu/2017/fall/cs301/reference/x86_64.html
+; https://www.cs.virginia.edu/%7Eevans/cs216/guides/x86.html
+; https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/
+
   section .bss
   buf resb 20
 
