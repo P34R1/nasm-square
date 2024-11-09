@@ -15,16 +15,19 @@ atoi:
   mov rax, 0                           ; Set initial total to 0
 
 convert:
+  ; get the character
   movzx rsi, byte [rdi]                ; Get the current character
   test rsi, rsi                        ; Check for \0
   je done
 
+  ; err if not a num
   cmp rsi, 48                          ; Anything less than 0 is invalid
   jl error
 
   cmp rsi, 57                          ; Anything greater than 9 is invalid
   jg error
 
+  ; convert
   sub rsi, 48                          ; Convert from ASCII to decimal
   imul rax, 10                         ; Multiply total by 10
   add rax, rsi                         ; Add current digit to total
@@ -49,20 +52,30 @@ itoa:
   mov rax, rsi
   push rbx                             ; Save rbx since we'll use it as a temporary register
 
+  ; add newline
+  mov rbx, 0Ah 
+  mov [buf + 20], rbx; insert newline
+  mov rbx, 1 ; size of newline char
+
+  ; load the string loc
   lea rbx, [buf + 20]                 ; rbx = buffer pointer (point to the end of the buffer)
   push rbx ; save mem loc in stack
   mov rbx, [rsp] ; copy into rbx
 
+  add [rsp], rbx ; to account for the newline
   mov rcx, 10                          ; Divider (10 for decimal base)
 
 itoa_loop:
+  ; divide
   mov rdx, 0 ; ref rdx
   div rcx                              ; Divide rax by rcx (10), quotient in rax, remainder in rdx
 
+  ; convert to char and insert
   add dl, '0'                          ; Convert remainder (digit) to ASCII            dl is lowest byte of rdx
   dec rbx                              ; Move buffer pointer backwards
   mov [rbx], dl                        ; Store the digit in the buffer
 
+  ; check if done looping
   test rax, rax                        ; Check if quotient is zero
   jnz itoa_loop                        ; If not zero, continue loop
 
