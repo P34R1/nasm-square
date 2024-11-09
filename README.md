@@ -3,7 +3,7 @@
 This program seems simple.
 It's only complex because it's made with x86_64 assembly.
 
-C++ equivalent: `cout << argv[1] << "^2 = " << argv[1] * argv[1] << endl;`
+C++ equivalent: `std::cout << argv[1] << "^2 = " << argv[1] * argv[1];`
 
 ## Requirements
 
