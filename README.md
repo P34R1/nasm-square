@@ -3,10 +3,7 @@
 This program seems simple.
 It's only complex because it's made with x86_64 assembly.
 
-Cpp equivalent:
-```cpp
-cout << argv[1] << "^2 = " << argv[1] * argv[1] << endl;
-```
+C++ equivalent: `cout << argv[1] << "^2 = " << argv[1] * argv[1] << endl;`
 
 ## Requirements
 
@@ -21,13 +18,13 @@ cout << argv[1] << "^2 = " << argv[1] * argv[1] << endl;
 
 2. **Assemble the code**:
 
-   ```bash
-   nasm -f elf64 -o main.o src/main.asm
-   nasm -f elf64 -o syscalls.o src/syscalls.asm
-   nasm -f elf64 -o len.o src/len.asm
-   nasm -f elf64 -o numbers.o src/numbers.asm
+```bash
+nasm -f elf64 -o main.o src/main.asm
+nasm -f elf64 -o syscalls.o src/syscalls.asm
+nasm -f elf64 -o len.o src/len.asm
+nasm -f elf64 -o numbers.o src/numbers.asm
+```
 
-   ```
 3. **Link the object files**
 
 ```bash
