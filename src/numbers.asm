@@ -36,7 +36,7 @@ convert:
   jg error
 
 ; convert
-  sub rsi, '0'                          ; Convert from ASCII to decimal
+  sub rsi, '0'                         ; Convert from ASCII to decimal
   imul rax, 10                         ; Multiply total by 10
   add rax, rsi                         ; Add current digit to total
 
@@ -79,7 +79,7 @@ itoa_loop:
   div rcx                              ; Divide rax by rcx (10), quotient in rax, remainder in rdx
 
 ; convert to char and insert
-  add rdx, '0'                          ; Convert remainder (digit) to ASCII            dl is lowest byte of rdx
+  add rdx, '0'                         ; Convert remainder (digit) to ASCII            dl is lowest byte of rdx
   dec rbx                              ; Move buffer pointer backwards
   mov [rbx], dl                        ; Store the digit in the buffer
 
