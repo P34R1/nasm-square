@@ -79,7 +79,11 @@ itoa_loop:
   div rcx                              ; Divide rax by rcx (10), quotient in rax, remainder in rdx
 
 ; convert to char and insert
+<<<<<<< HEAD
   add rdx, '0'                         ; Convert remainder (digit) to ASCII            dl is lowest byte of rdx
+=======
+  add rdx, '0'                          ; Convert remainder (digit) to ASCII            dl is lowest byte of rdx
+>>>>>>> 3211ef9589d91f9440eaf6ab8293e97b72fcaafe
   dec rbx                              ; Move buffer pointer backwards
   mov [rbx], dl                        ; Store the digit in the buffer
 
